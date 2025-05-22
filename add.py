@@ -360,9 +360,6 @@ async def show_cart(message: types.Message, update=False):
 
     print(f"🛒 Корзина для пользователя {user_id}: {cart_items}") 
 
-    if not cart_items:
-        await message.answer("🛒 Ваша корзина пуста.")
-        return
     
     text = "🛍 *Ваша корзина:*\n\n"
     total_price = 0
@@ -393,6 +390,10 @@ async def show_cart(message: types.Message, update=False):
         await message.answer(text, parse_mode="Markdown", reply_markup=markup)
     else:
         await message.answer(text, parse_mode="Markdown", reply_markup=markup)
+
+    if not cart_items:
+        await message.answer("🛒 Ваша корзина пуста.")
+        return
 
 
 # Увеличение количества товара в корзине
